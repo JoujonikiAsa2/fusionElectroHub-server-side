@@ -10,7 +10,7 @@ const app = express()
 
 // Send token from client to server
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173', "https://fusionelectrohub.web.app"],
     credentials: true
 }))
 app.use(express.json())
@@ -77,8 +77,8 @@ async function run() {
             res
                 .cookie('token', token, {
                     httpOnly: true,
-                    secure: false,
-                    // sameSite: 'none'  //makes problem
+                    secure: true,
+                    sameSite: 'none'  //makes problem
                 })
                 .send({ success: true })
         })
@@ -156,7 +156,7 @@ async function run() {
         // for card data
 
         app.get('/carts', logger, varifyToken, async (req, res) => {
-            
+
             const cursor = selectedCollection.find()
             const result = await cursor.toArray()
             // console.log(result)

@@ -18,6 +18,10 @@
                 "DELETE",
                 "OPTIONS"
             ]
-        }
+        },
+        {
+            "src": "/jwt", 
+            "dest": "index.js"
+          }
     ]
 }
